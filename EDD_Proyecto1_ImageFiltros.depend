@@ -1,0 +1,34 @@
+# depslib dependency file v1.0
+1567613685 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\main.cpp
+	<iostream>
+	"MatrizCapa.h"
+	<string>
+
+1567563116 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodomatriz.cpp
+	"NodoMatriz.h"
+	<string>
+
+1567562841 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodomatriz.h
+	<string>
+
+1567614325 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\matrizcapa.cpp
+	<iostream>
+	"MatrizCapa.h"
+	"NodoMatriz.h"
+
+1567612145 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\matrizcapa.h
+	<string>
+	"NodoMatriz.h"
+
+1566957010 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodocolumna.cpp
+	"NodoColumna.h"
+
+1567475616 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodocolumna.h
+	"NodoMatriz.h"
+
+1566956959 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodofila.cpp
+	"NodoFila.h"
+
+1567475640 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodofila.h
+	"NodoMatriz.h"
+

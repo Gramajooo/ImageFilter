@@ -29,10 +29,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="NodoColumna.cpp" />
-		<Unit filename="NodoColumna.h" />
-		<Unit filename="NodoFila.cpp" />
-		<Unit filename="NodoFila.h" />
+		<Unit filename="MatrizCapa.cpp" />
+		<Unit filename="MatrizCapa.h" />
 		<Unit filename="NodoMatriz.cpp" />
 		<Unit filename="NodoMatriz.h" />
 		<Unit filename="main.cpp" />

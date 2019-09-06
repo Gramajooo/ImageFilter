@@ -1,6 +1,9 @@
 #ifndef NODOMATRIZ_H
 #define NODOMATRIZ_H
 
+#include <string>
+
+using namespace std;
 
 class NodoMatriz
 {
@@ -11,9 +14,12 @@ class NodoMatriz
         NodoMatriz *arri;
         NodoMatriz *abajo;
 
-        NodoMatriz();
-        virtual ~NodoMatriz();
+        string color;
+        int x;
+        int y;
 
+        NodoMatriz(int x, int y, string color);
+        virtual ~NodoMatriz();
 
     protected:
 

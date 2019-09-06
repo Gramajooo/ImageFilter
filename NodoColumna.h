@@ -1,6 +1,7 @@
 #ifndef NODOCOLUMNA_H
 #define NODOCOLUMNA_H
 
+#include "NodoMatriz.h"
 
 class NodoColumna
 {
