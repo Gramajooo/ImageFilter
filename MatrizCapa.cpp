@@ -54,22 +54,20 @@ NodoMatriz* MatrizCapa::insertarOrdColumna(NodoMatriz *nuevo, NodoMatriz *cabeza
         }
         if (temp->sig != NULL){
             temp = temp->sig;
-
         }else{
             break;
         }
-        if (bandera)
-        {
-            nuevo->sig = temp;
-            temp->ant->sig = nuevo;
-            nuevo->ant = temp->ant;
-            temp->abajo = nuevo;
-        }else{
-            temp->sig = nuevo;
-            nuevo->ant = temp;
-        }
-        return nuevo;
     }
+    if (bandera){
+        nuevo->sig = temp;
+        temp->ant->sig = nuevo;
+        nuevo->ant = temp->ant;
+        temp->ant = nuevo;
+    }else{
+        temp->sig = nuevo;
+        nuevo->ant = temp;
+    }
+    return nuevo;
 
 
 }
@@ -77,8 +75,6 @@ NodoMatriz* MatrizCapa::insertarOrdColumna(NodoMatriz *nuevo, NodoMatriz *cabeza
 NodoMatriz* MatrizCapa::insertarOrdFila(NodoMatriz *nuevo, NodoMatriz *cabeza_fil){
     NodoMatriz *temp = cabeza_fil;
     bool bandera = false;
-
-            cout << "caray" << endl;
     while (true){
         if (temp->y == nuevo->y){
             temp->x = nuevo->x;
@@ -94,18 +90,17 @@ NodoMatriz* MatrizCapa::insertarOrdFila(NodoMatriz *nuevo, NodoMatriz *cabeza_fi
         }else{
             break;
         }
-        if (bandera)
-        {
-            nuevo->abajo = temp;
-            temp->arri->abajo = nuevo;
-            nuevo->arri = temp->arri;
-            temp->abajo = nuevo;
-        }else{
-            temp->abajo = nuevo;
-            nuevo->arri = temp;
-        }
-        return nuevo;
     }
+    if (bandera) {
+        nuevo->abajo = temp;
+        temp->arri->abajo = nuevo;
+        nuevo->arri = temp->arri;
+        temp->abajo = nuevo;
+    }else{
+        temp->abajo = nuevo;
+        nuevo->arri = temp;
+    }
+    return nuevo;
 
 }
 
@@ -133,7 +128,6 @@ void MatrizCapa::insertarColor(int x, int y, string color){
 
 
         nuevo = insertarOrdColumna(nuevo, nodoFila);
-        cout << "holis original" << endl;
         nuevo = insertarOrdFila(nuevo, nodoColumna);
 
 
