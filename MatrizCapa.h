@@ -1,11 +1,7 @@
 #ifndef MATRIZCAPA_H
 #define MATRIZCAPA_H
 
-#include <string>
-
 #include "NodoMatriz.h"
-
-using namespace std;
 
 class MatrizCapa
 {
@@ -13,6 +9,12 @@ class MatrizCapa
 
         // NODO RAIZ
         NodoMatriz *root;
+
+        //NODO CAPA
+        MatrizCapa *sig;
+        MatrizCapa *ant;
+        int prioridad;
+        string nomcapa;
 
         MatrizCapa();
         virtual ~MatrizCapa();

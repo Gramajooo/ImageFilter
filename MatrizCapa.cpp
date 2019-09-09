@@ -3,13 +3,16 @@
 #include "MatrizCapa.h"
 #include "NodoMatriz.h"
 
-using namespace std;
-
 MatrizCapa::MatrizCapa()
 {
     //ctor
-
+    //NODO MATRIZ ROOT
     this->root = new NodoMatriz(-1,-1, "Root");
+    //NODO MATRIZ CAPA
+    this->sig = NULL;
+    this->ant = NULL;
+    this->prioridad = 0;
+    this->nomcapa = "";
 
 }
 

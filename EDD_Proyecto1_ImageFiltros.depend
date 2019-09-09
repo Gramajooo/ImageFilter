@@ -4,20 +4,19 @@
 	"MatrizCapa.h"
 	<string>
 
-1567563116 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodomatriz.cpp
+1567975447 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodomatriz.cpp
 	"NodoMatriz.h"
 	<string>
 
 1567562841 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodomatriz.h
 	<string>
 
-1567614325 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\matrizcapa.cpp
+1567973699 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\matrizcapa.cpp
 	<iostream>
 	"MatrizCapa.h"
 	"NodoMatriz.h"
 
-1567612145 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\matrizcapa.h
-	<string>
+1567973632 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\matrizcapa.h
 	"NodoMatriz.h"
 
 1566957010 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodocolumna.cpp
@@ -31,4 +30,19 @@
 
 1567475640 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodofila.h
 	"NodoMatriz.h"
+
+1567973679 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\listafiltro.cpp
+	"ListaFiltro.h"
+
+1567973626 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\listafiltro.h
+	<string>
+
+1567975446 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodoarbol.cpp
+	"NodoArbol.h"
+	"ListaFiltro.h"
+	"MatrizCapa.h"
+
+1567975420 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodoarbol.h
+	"MatrizCapa.h"
+	"ListaFiltro.h"
 
