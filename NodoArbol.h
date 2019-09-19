@@ -18,6 +18,7 @@ class NodoArbol
 
         //Lista de capas
         void crearCapa();
+        void graficarMatriz();
 
         //NODO FILTROS
         ListaFiltro *iniFil;

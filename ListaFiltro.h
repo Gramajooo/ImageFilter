@@ -15,7 +15,7 @@ class ListaFiltro
 
         string nomfiltro;
 
-        ListaFiltro();
+        ListaFiltro(string nomfiltro);
         virtual ~ListaFiltro();
 
     protected:

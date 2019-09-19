@@ -1,13 +1,13 @@
 #include "ListaFiltro.h"
 
-ListaFiltro::ListaFiltro()
+ListaFiltro::ListaFiltro(string nomfiltro)
 {
     //ctor
 
     this->sig = NULL;
     this->ant = NULL;
-    this->nomfiltro = "";
-    
+    this->nomfiltro = nomfiltro;
+
 }
 
 ListaFiltro::~ListaFiltro()

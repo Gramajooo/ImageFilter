@@ -11,7 +11,7 @@ class ArbolImagen
         NodoArbol *raiz;
 
         //METODOS ARBOL BINARIO
-        
+
         void insertarImagen(string nickname);
         NodoArbol *insertar(NodoArbol *raiz, string nickname);
 
@@ -22,7 +22,9 @@ class ArbolImagen
         void preorden(NodoArbol *raiz);
 
         void recorrerPosorden();
-        void postorden(NodoArbol *raiz);        
+        void postorden(NodoArbol *raiz);
+
+
 
         ArbolImagen();
         virtual ~ArbolImagen();

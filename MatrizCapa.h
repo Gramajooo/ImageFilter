@@ -9,7 +9,6 @@ class MatrizCapa
 
         // NODO RAIZ
         NodoMatriz *root;
-
         //NODO CAPA
         MatrizCapa *sig;
         MatrizCapa *ant;
@@ -30,6 +29,8 @@ class MatrizCapa
         NodoMatriz* crearColumna(int x);
 
         void insertarColor(int x, int y, string color);
+
+        void graficar();
 
     protected:
 

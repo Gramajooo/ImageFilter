@@ -18,6 +18,18 @@ NodoArbol::NodoArbol(string nickname)
     this->iniFil = NULL;
 }
 
+
+void NodoArbol::crearCapa(){
+    MatrizCapa nuevaMatriz;
+    nuevaMatriz.insertarColor(1,1,"FFF");
+}
+
+void NodoArbol::graficarMatriz(){
+
+}
+
+
+
 NodoArbol::~NodoArbol()
 {
     //dtor

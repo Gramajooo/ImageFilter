@@ -1,13 +1,15 @@
-#include <iostream>
-
 #include "MatrizCapa.h"
 #include "NodoMatriz.h"
+
+#include <iostream>
+#include <fstream>
+#include <sstream>
 
 MatrizCapa::MatrizCapa()
 {
     //ctor
     //NODO MATRIZ ROOT
-    this->root = new NodoMatriz(-1,-1, "Root");
+    this->root = new NodoMatriz(0,0, "Root");
     //NODO MATRIZ CAPA
     this->sig = NULL;
     this->ant = NULL;
@@ -18,12 +20,12 @@ MatrizCapa::MatrizCapa()
 
 NodoMatriz* MatrizCapa::buscarFila(int y)
 {
-    NodoMatriz *nuevo = root;
-    while (nuevo != NULL){
-        if (nuevo->y == y){
-            return nuevo;
+    NodoMatriz *temp = this->root;
+    while (temp != NULL){
+        if (temp->y == y){
+            return temp;
         }
-        nuevo = nuevo->sig;
+        temp = temp->sig;
     }
     return NULL;
 }
@@ -31,12 +33,12 @@ NodoMatriz* MatrizCapa::buscarFila(int y)
 
 NodoMatriz* MatrizCapa::buscarColumna(int x)
 {
-    NodoMatriz *nuevo = root;
-    while (nuevo != NULL){
-        if (nuevo->x == x){
-            return nuevo;
+    NodoMatriz *temp = this->root;
+    while (temp != NULL){
+        if (temp->x == x){
+            return temp;
         }
-        nuevo = nuevo->sig;
+        temp = temp->sig;
     }
     return NULL;
 }
@@ -58,6 +60,7 @@ NodoMatriz* MatrizCapa::insertarOrdColumna(NodoMatriz *nuevo, NodoMatriz *cabeza
         if (temp->sig != NULL){
             temp = temp->sig;
         }else{
+            bandera = false;
             break;
         }
     }
@@ -77,7 +80,7 @@ NodoMatriz* MatrizCapa::insertarOrdColumna(NodoMatriz *nuevo, NodoMatriz *cabeza
 
 NodoMatriz* MatrizCapa::insertarOrdFila(NodoMatriz *nuevo, NodoMatriz *cabeza_fil){
     NodoMatriz *temp = cabeza_fil;
-    bool bandera = false;
+    bool bandera = true;
     while (true){
         if (temp->y == nuevo->y){
             temp->x = nuevo->x;
@@ -91,6 +94,7 @@ NodoMatriz* MatrizCapa::insertarOrdFila(NodoMatriz *nuevo, NodoMatriz *cabeza_fi
             temp = temp->abajo;
 
         }else{
+            bandera = false;
             break;
         }
     }
@@ -98,7 +102,7 @@ NodoMatriz* MatrizCapa::insertarOrdFila(NodoMatriz *nuevo, NodoMatriz *cabeza_fi
         nuevo->abajo = temp;
         temp->arri->abajo = nuevo;
         nuevo->arri = temp->arri;
-        temp->abajo = nuevo;
+        temp->arri = nuevo;
     }else{
         temp->abajo = nuevo;
         nuevo->arri = temp;
@@ -109,20 +113,21 @@ NodoMatriz* MatrizCapa::insertarOrdFila(NodoMatriz *nuevo, NodoMatriz *cabeza_fi
 
 NodoMatriz * MatrizCapa::crearColumna(int x){
     NodoMatriz *cabeza_columna = this->root;
-    NodoMatriz *columna = insertarOrdColumna(new NodoMatriz(x, -1, "COL"), cabeza_columna);
+    NodoMatriz *columna = insertarOrdColumna(new NodoMatriz(x, 0, "COL"), cabeza_columna);
     return columna;
 }
 
 NodoMatriz * MatrizCapa::crearFila(int y){
     NodoMatriz *cabeza_fila = this->root;
-    NodoMatriz *fila = insertarOrdFila(new NodoMatriz(-1, y, "FIL"), cabeza_fila);
+    NodoMatriz *fila = insertarOrdFila(new NodoMatriz(0, y, "FIL"), cabeza_fila);
     return fila;
 }
 
 void MatrizCapa::insertarColor(int x, int y, string color){
     NodoMatriz *nuevo = new NodoMatriz(x, y, color);
-    NodoMatriz *nodoFila = buscarFila(y);
     NodoMatriz *nodoColumna = buscarColumna(x);
+    NodoMatriz *nodoFila = buscarFila(y);
+
 
     if (nodoColumna == NULL && nodoFila == NULL)
     {
@@ -132,8 +137,7 @@ void MatrizCapa::insertarColor(int x, int y, string color){
 
         nuevo = insertarOrdColumna(nuevo, nodoFila);
         nuevo = insertarOrdFila(nuevo, nodoColumna);
-
-
+        return;
 
     }else if (nodoColumna == NULL && nodoFila != NULL){
 
@@ -157,8 +161,55 @@ void MatrizCapa::insertarColor(int x, int y, string color){
         nuevo = insertarOrdFila(nuevo, nodoColumna);
 
     }
+}
 
 
+void MatrizCapa::graficar(){
+    NodoMatriz *rrFil = this->root;
+    NodoMatriz *rrCol = this->root;
+
+
+    string grafica = "digraph g {node [shape=box, color=cornflowerblue ]; \n";
+    //grafica += rrFil->x + "," + rrFil->y + " " + rrFil->color + "; \n";
+    while(rrCol != NULL){
+        stringstream rr1;
+        stringstream rr2;
+        rr1 << rrCol->x;
+        rr2 << rrCol->y;
+        string s1 = rr1.str();
+        string s2 = rr2.str();
+        grafica += "\"" + s1 + "," + s2 + " " + rrCol->color + "\"; \n";
+        while(rrFil != NULL){
+            stringstream rr3;
+            stringstream rr4;
+            rr3 << rrFil->x;
+            rr4 << rrFil->y;
+            string s3 = rr3.str();
+            string s4 = rr4.str();
+            grafica += "\"" + s3 + "," + s4 + " " + rrFil->color + "\"; \n";
+            rrFil = rrFil->abajo;
+        }
+        stringstream rr11;
+        stringstream rr12;
+        rr11 << rrCol->abajo->x;
+        rr12 << rrCol->abajo->y;
+        string s11 = rr11.str();
+        string s12 = rr12.str();
+        grafica += "\"" + s11 + "," + s12 + " " + "------" + rrCol->abajo->color + "\"; \n";
+        rrCol = rrCol->sig;
+    }
+    grafica += "}";
+
+    ofstream file;
+    file.open("graf.dot");
+    file << grafica;
+    file.close();
+
+    system("dot graf.dot -o imagen.jpg -Tjpg -Gcharset=utf8");
+   // system("/c start imagen.jpg");
+
+
+    cout << grafica << endl;
 
 }
 

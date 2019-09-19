@@ -1,5 +1,3 @@
-#include <cstring>
-
 #include "ArbolImagen.h"
 #include "NodoArbol.h"
 
@@ -25,8 +23,6 @@ NodoArbol *ArbolImagen::insertar(NodoArbol *raiz, string nickname){
     }
     return raiz;
 }
-
-
 
 
 ArbolImagen::~ArbolImagen()

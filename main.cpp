@@ -1,10 +1,36 @@
 #include <iostream>
+#include <string>
+#include <fstream>
+#include <sstream>
 
 #include "MatrizCapa.h"
 
-#include <string>
-
 using namespace std;
+
+void leerImagenes(){
+
+    MatrizCapa insertar;
+
+    ifstream archivos;
+    string texto;
+    int x=0, y=0;
+    archivos.open("usuarios.csv",ios::in);
+
+    while(getline(archivos, texto)){
+        stringstream ss(texto);
+        x++;
+        y=1;
+        while(getline(ss, texto, ';')){
+            //if(texto != "x"){
+                insertar.insertarColor(y,x,texto);
+                cout << y << " , " << x << " " << texto << endl;
+            //}
+            y++;
+        }
+        ss.clear();
+    }
+    insertar.graficar();
+}
 
 int main()
 {
@@ -22,15 +48,9 @@ int main()
     cin >> opcion;
 
     if (opcion == 7){
-        MatrizCapa insertar;
-        insertar.insertarColor(1,3,"FFF");
-        cout << "Insertado correctamente " << endl;
+        leerImagenes();
     }else{
         cout << "Algo salio mal " << endl;
     }
-
-
-
-
     return 0;
 }
