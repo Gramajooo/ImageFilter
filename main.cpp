@@ -8,18 +8,20 @@
 
 using namespace std;
 
+
+ArbolImagen inserImg;
+
 void leerImagenes(){
 
-    ArbolImagen inserImg;
-
     ifstream archivos;
-    string texto;
     string archi;
-    int x=-1, y=-1;
     cout << "Ingrese el nombre de la imagen: " <<endl;
     cin >> archi;
-    archivos.open(".\CargaMasiva\\"+archi+"\inicial.csv",ios::in);
+    string direc = ".\\CargaMasiva\\"+archi+"\\inicial.csv";
+    archivos.open(direc,ios::in);
+    cout << direc <<endl;
     inserImg.insertarImagen(archi);
+    /*
     while(getline(archivos, texto)){
         stringstream ss(texto);
         x++;
@@ -32,9 +34,13 @@ void leerImagenes(){
         }
         ss.clear();
     }
-    inserImg.recorrerInorden();
-
+    */
 }
+
+void seleccionarImagen(){
+    inserImg.recorrerInorden();
+}
+
 
 int main()
 {
@@ -53,11 +59,20 @@ int main()
 
         cin >> opcion;
 
-        if (opcion == 7){
+        switch(opcion){
+        case 1:
             leerImagenes();
-        }else{
+            break;
+        case 2:
+            seleccionarImagen();
+            break;
+        case 7:
+            leerImagenes();
+            break;
+        default:
             cout << "Algo salio mal " << endl;
             opcion = 8;
+            break;
         }
     }
     return 0;

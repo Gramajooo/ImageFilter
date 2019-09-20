@@ -1,6 +1,6 @@
 #include "ArbolImagen.h"
 #include "NodoArbol.h"
-
+#include <iostream>
 ArbolImagen::ArbolImagen()
 {
     //ctor
@@ -10,11 +10,11 @@ ArbolImagen::ArbolImagen()
 }
 
 void ArbolImagen::insertarImagen(string nickname){
-    insertar(this->raiz, nickname);
+    this->raiz = insertar(this->raiz, nickname);
 }
 
 NodoArbol *ArbolImagen::insertar(NodoArbol *raiz, string nickname){
-    if(raiz != NULL){
+    if(raiz == NULL){
         raiz = new NodoArbol(nickname);
     }else if ( 1 < raiz->nickname.compare (nickname)){
         raiz->izq = insertar(raiz->izq, nickname);
@@ -30,11 +30,11 @@ void ArbolImagen::recorrerInorden(){
 }
 void ArbolImagen::inorden(NodoArbol *raiz){
     int cont=1;
-    if (nodo != NULL) {
-		inorden(NodoArbol->izq);
-		cout << cont + ". " + NodoArbol->nickname << endl;
+    if (raiz != NULL) {
+		inorden(raiz->izq);
+		cout << cont + ". " + raiz->nickname << endl;
         cont++;
-		inorden(NodoArbol->dere);
+		inorden(raiz->dere);
 	}
 }
 
@@ -43,11 +43,11 @@ void ArbolImagen::recorrerPreorden(){
 }
 void ArbolImagen::preorden(NodoArbol *raiz){
     int cont=1;
-    if (nodo != NULL) {
-		cout << cont + ". " + NodoArbol->nickname << endl;
+    if (raiz != NULL) {
+		cout << cont + ". " + raiz->nickname << endl;
         cont++;
-		preorden(NodoArbol->izq);
-		preorden(NodoArbol->dere);
+		preorden(raiz->izq);
+		preorden(raiz->dere);
 	}
 }
 
@@ -56,10 +56,10 @@ void ArbolImagen::recorrerPosorden(){
 }
 void ArbolImagen::postorden(NodoArbol *raiz){
     int cont=1;
-    if (nodo != NULL) {
-		postorden(NodoArbol->izq);
-		postorden(NodoArbol->dere);
-		cout << cont + ". " + NodoArbol->nickname << endl;
+    if (raiz != NULL) {
+		postorden(raiz->izq);
+		postorden(raiz->dere);
+		cout << cont + ". " + raiz->nickname << endl;
         cont++;
 	}
 }
