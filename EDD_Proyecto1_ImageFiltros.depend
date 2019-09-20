@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1568418267 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\main.cpp
+1568948056 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\main.cpp
 	<iostream>
 	<string>
 	<fstream>
@@ -13,7 +13,7 @@
 1568245302 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodomatriz.h
 	<string>
 
-1568417547 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\matrizcapa.cpp
+1568948151 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\matrizcapa.cpp
 	"MatrizCapa.h"
 	"NodoMatriz.h"
 	<iostream>
@@ -41,16 +41,19 @@
 1568046813 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\listafiltro.h
 	<string>
 
-1568245505 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodoarbol.cpp
+1568946407 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodoarbol.cpp
 	"NodoArbol.h"
 	"ListaFiltro.h"
 	"MatrizCapa.h"
+	<fstream>
+	<sstream>
+	<iostream>
 
 1568128815 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodoarbol.h
 	"MatrizCapa.h"
 	"ListaFiltro.h"
 
-1568163496 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\arbolimagen.cpp
+1568955246 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\arbolimagen.cpp
 	"ArbolImagen.h"
 	"NodoArbol.h"
 

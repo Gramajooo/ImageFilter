@@ -1,6 +1,9 @@
 #include "NodoArbol.h"
 #include "ListaFiltro.h"
 #include "MatrizCapa.h"
+#include <fstream>
+#include <sstream>
+#include <iostream>
 
 NodoArbol::NodoArbol(string nickname)
 {
@@ -20,8 +23,27 @@ NodoArbol::NodoArbol(string nickname)
 
 
 void NodoArbol::crearCapa(){
-    MatrizCapa nuevaMatriz;
-    nuevaMatriz.insertarColor(1,1,"FFF");
+    MatrizCapa insertar;
+
+    ifstream archivos;
+    string texto;
+    int x=-1, y=-1;
+    archivos.open("usuarios.csv",ios::in);
+
+    while(getline(archivos, texto)){
+        stringstream ss(texto);
+        x++;
+        y=0;
+        while(getline(ss, texto, ',')){
+            if(texto != "x"){
+                insertar.insertarColor(y,x,texto);
+                cout << y << " , " << x << " " << texto << endl;
+            }
+            y++;
+        }
+        ss.clear();
+    }
+    //insertar.graficar();
 }
 
 void NodoArbol::graficarMatriz(){

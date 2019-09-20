@@ -9,7 +9,7 @@ MatrizCapa::MatrizCapa()
 {
     //ctor
     //NODO MATRIZ ROOT
-    this->root = new NodoMatriz(0,0, "Root");
+    this->root = new NodoMatriz(-1,-1, "Root");
     //NODO MATRIZ CAPA
     this->sig = NULL;
     this->ant = NULL;
@@ -113,13 +113,13 @@ NodoMatriz* MatrizCapa::insertarOrdFila(NodoMatriz *nuevo, NodoMatriz *cabeza_fi
 
 NodoMatriz * MatrizCapa::crearColumna(int x){
     NodoMatriz *cabeza_columna = this->root;
-    NodoMatriz *columna = insertarOrdColumna(new NodoMatriz(x, 0, "COL"), cabeza_columna);
+    NodoMatriz *columna = insertarOrdColumna(new NodoMatriz(x, -1, "COL"), cabeza_columna);
     return columna;
 }
 
 NodoMatriz * MatrizCapa::crearFila(int y){
     NodoMatriz *cabeza_fila = this->root;
-    NodoMatriz *fila = insertarOrdFila(new NodoMatriz(0, y, "FIL"), cabeza_fila);
+    NodoMatriz *fila = insertarOrdFila(new NodoMatriz(-1, y, "FIL"), cabeza_fila);
     return fila;
 }
 
@@ -169,16 +169,10 @@ void MatrizCapa::graficar(){
     NodoMatriz *rrCol = this->root;
 
 
-    string grafica = "digraph g {node [shape=box, color=cornflowerblue ]; \n";
-    //grafica += rrFil->x + "," + rrFil->y + " " + rrFil->color + "; \n";
+    string grafica = "digraph g { \n";
+    grafica += "node[shape=box, color=cornflowerblue];";
     while(rrCol != NULL){
-        stringstream rr1;
-        stringstream rr2;
-        rr1 << rrCol->x;
-        rr2 << rrCol->y;
-        string s1 = rr1.str();
-        string s2 = rr2.str();
-        grafica += "\"" + s1 + "," + s2 + " " + rrCol->color + "\"; \n";
+        grafica += "\n subgraph {";
         while(rrFil != NULL){
             stringstream rr3;
             stringstream rr4;
@@ -186,18 +180,56 @@ void MatrizCapa::graficar(){
             rr4 << rrFil->y;
             string s3 = rr3.str();
             string s4 = rr4.str();
-            grafica += "\"" + s3 + "," + s4 + " " + rrFil->color + "\"; \n";
+            grafica += "\"" + s3 + "," + s4 + " " + rrFil->color + "\" \n";
             rrFil = rrFil->abajo;
+            if(rrFil != NULL){
+                stringstream rr3;
+                stringstream rr4;
+                rr3 << rrFil->x;
+                rr4 << rrFil->y;
+                string s3 = rr3.str();
+                string s4 = rr4.str();
+                grafica += "-> \"" + s3+ "," + s4 + " " + rrFil->color + "\" [dir=\"both\"] \n";
+            }
         }
-        stringstream rr11;
-        stringstream rr12;
-        rr11 << rrCol->abajo->x;
-        rr12 << rrCol->abajo->y;
-        string s11 = rr11.str();
-        string s12 = rr12.str();
-        grafica += "\"" + s11 + "," + s12 + " " + "------" + rrCol->abajo->color + "\"; \n";
         rrCol = rrCol->sig;
+        if(rrFil == NULL){
+            rrFil = rrCol;
+        }
+         grafica += "}";
     }
+    rrFil = this->root;
+    rrCol = this->root;
+
+    while(rrFil != NULL){
+        grafica += "\n rank=same{";
+        while(rrCol != NULL){
+            stringstream rr3;
+            stringstream rr4;
+            rr3 << rrCol->x;
+            rr4 << rrCol->y;
+            string s3 = rr3.str();
+            string s4 = rr4.str();
+            grafica += "\"" + s3 + "," + s4 + " " + rrCol->color + "\" \n";
+            rrCol = rrCol->sig;
+            if(rrCol != NULL){
+                stringstream rr3;
+                stringstream rr4;
+                rr3 << rrCol->x;
+                rr4 << rrCol->y;
+                string s3 = rr3.str();
+                string s4 = rr4.str();
+                grafica += "-> \"" + s3+ "," + s4 + " " + rrCol->color + "\" [dir=\"both\"] \n";
+            }
+        }
+        rrFil = rrFil->abajo;
+        if(rrCol == NULL){
+            rrCol = rrFil;
+        }
+          grafica += "}";
+    }
+
+
     grafica += "}";
 
     ofstream file;
@@ -206,10 +238,10 @@ void MatrizCapa::graficar(){
     file.close();
 
     system("dot graf.dot -o imagen.jpg -Tjpg -Gcharset=utf8");
-   // system("/c start imagen.jpg");
+    //system("/c start imagen.jpg");
 
 
-    cout << grafica << endl;
+    cout << "\n Listo :)" << endl;
 
 }
 

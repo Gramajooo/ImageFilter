@@ -25,6 +25,45 @@ NodoArbol *ArbolImagen::insertar(NodoArbol *raiz, string nickname){
 }
 
 
+void ArbolImagen::recorrerInorden(){
+    inorden(this->raiz);
+}
+void ArbolImagen::inorden(NodoArbol *raiz){
+    int cont=1;
+    if (nodo != NULL) {
+		inorden(NodoArbol->izq);
+		cout << cont + ". " + NodoArbol->nickname << endl;
+        cont++;
+		inorden(NodoArbol->dere);
+	}
+}
+
+void ArbolImagen::recorrerPreorden(){
+    preorden(this->raiz);
+}
+void ArbolImagen::preorden(NodoArbol *raiz){
+    int cont=1;
+    if (nodo != NULL) {
+		cout << cont + ". " + NodoArbol->nickname << endl;
+        cont++;
+		preorden(NodoArbol->izq);
+		preorden(NodoArbol->dere);
+	}
+}
+
+void ArbolImagen::recorrerPosorden(){
+    postorden(this->raiz);
+}
+void ArbolImagen::postorden(NodoArbol *raiz){
+    int cont=1;
+    if (nodo != NULL) {
+		postorden(NodoArbol->izq);
+		postorden(NodoArbol->dere);
+		cout << cont + ". " + NodoArbol->nickname << endl;
+        cont++;
+	}
+}
+
 ArbolImagen::~ArbolImagen()
 {
     //dtor
