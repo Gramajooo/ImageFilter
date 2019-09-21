@@ -5,17 +5,19 @@
 #include <fstream>
 #include <sstream>
 
-MatrizCapa::MatrizCapa()
+MatrizCapa::MatrizCapa(string prioridad, string nomcapa)
 {
-    //ctor
+
+    this->prioridad = prioridad;
+    this->nomcapa = nomcapa;
+
+}
+
+MatrizCapa::MatrizCapa(){
     //NODO MATRIZ ROOT
     this->root = new NodoMatriz(-1,-1, "Root");
     //NODO MATRIZ CAPA
     this->sig = NULL;
-    this->ant = NULL;
-    this->prioridad = 0;
-    this->nomcapa = "";
-
 }
 
 NodoMatriz* MatrizCapa::buscarFila(int y)
@@ -164,10 +166,9 @@ void MatrizCapa::insertarColor(int x, int y, string color){
 }
 
 
-void MatrizCapa::graficar(){
+void MatrizCapa::graficar(string priori){
     NodoMatriz *rrFil = this->root;
     NodoMatriz *rrCol = this->root;
-
 
     string grafica = "digraph g { \n";
     grafica += "node[shape=box, color=cornflowerblue];";
@@ -236,9 +237,13 @@ void MatrizCapa::graficar(){
     file.open("graf.dot");
     file << grafica;
     file.close();
-
-    system("dot graf.dot -o imagen.jpg -Tjpg -Gcharset=utf8");
-    //system("/c start imagen.jpg");
+    cout << priori << endl;
+    string sys = "dot graf.dot -o Capas\\capa"+priori+".jpg -Tjpg -Gcharset=utf8";
+    cout << priori << endl;
+    cout << sys << endl;
+    const char *s = sys.c_str();
+    system(s);
+    //system("\\c start imagen.jpg");
 
 
     cout << "\n Listo :)" << endl;

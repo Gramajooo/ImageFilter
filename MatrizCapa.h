@@ -11,10 +11,10 @@ class MatrizCapa
         NodoMatriz *root;
         //NODO CAPA
         MatrizCapa *sig;
-        MatrizCapa *ant;
-        int prioridad;
+        string prioridad;
         string nomcapa;
 
+        MatrizCapa(string prioridad, string nomcapa);
         MatrizCapa();
         virtual ~MatrizCapa();
 
@@ -30,7 +30,7 @@ class MatrizCapa
 
         void insertarColor(int x, int y, string color);
 
-        void graficar();
+        void graficar(string prioridad);
 
     protected:
 

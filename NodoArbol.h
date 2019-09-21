@@ -17,7 +17,8 @@ class NodoArbol
         MatrizCapa *iniCapa;
 
         //Lista de capas
-        void crearCapa();
+        void crearCapa(string archi, string capa, string prioridad);
+        void llenarCapa(string archi, MatrizCapa *capa, string prioridad);
         void graficarMatriz();
 
         //NODO FILTROS
@@ -30,6 +31,7 @@ class NodoArbol
         void crearLienzo();
 
         NodoArbol(string nickname);
+        NodoArbol();
         virtual ~NodoArbol();
 
     protected:

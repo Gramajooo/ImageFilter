@@ -15,6 +15,10 @@ class ArbolImagen
         void insertarImagen(string nickname);
         NodoArbol *insertar(NodoArbol *raiz, string nickname);
 
+        string buscarImagen(int ids);
+        string buscar(NodoArbol *raiz);
+
+
         void recorrerInorden();
         void inorden(NodoArbol *raiz);
 
@@ -23,7 +27,6 @@ class ArbolImagen
 
         void recorrerPosorden();
         void postorden(NodoArbol *raiz);
-
 
 
         ArbolImagen();

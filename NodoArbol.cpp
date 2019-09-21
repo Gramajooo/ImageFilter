@@ -20,30 +20,43 @@ NodoArbol::NodoArbol(string nickname)
     //NODO FILTRO
     this->iniFil = NULL;
 }
+NodoArbol::NodoArbol(){}
 
-
-void NodoArbol::crearCapa(){
-    MatrizCapa insertar;
-
-    ifstream archivos;
-    string texto;
-    int x=-1, y=-1;
-    archivos.open("usuarios.csv",ios::in);
-
-    while(getline(archivos, texto)){
-        stringstream ss(texto);
-        x++;
-        y=0;
-        while(getline(ss, texto, ',')){
-            if(texto != "x"){
-                insertar.insertarColor(y,x,texto);
-                cout << y << " , " << x << " " << texto << endl;
-            }
-            y++;
-        }
-        ss.clear();
+void NodoArbol::crearCapa(string archi, string capa, string prioridad){
+    MatrizCapa *nueva = new MatrizCapa(prioridad, capa);
+    if(iniCapa == NULL){
+        iniCapa = nueva;
+        llenarCapa(archi, nueva, prioridad);
+    }else{
+        iniCapa->sig = nueva;
+        iniCapa = nueva;
+        llenarCapa(archi, nueva, prioridad);
     }
-    //insertar.graficar();
+}
+
+void NodoArbol::llenarCapa(string archi, MatrizCapa *capa, string prioridad){
+        MatrizCapa inse;
+        ifstream archivos;
+        string texto;
+        int x=-1, y=-1;
+
+        string direc = ".\\CargaMasiva\\"+archi+"\\"+capa->nomcapa;
+        archivos.open(direc,ios::in);
+        cout << direc << endl;
+        while(getline(archivos, texto)){
+            stringstream ss(texto);
+            x++;
+            y=0;
+            while(getline(ss, texto, ',')){
+                if(texto != "x"){
+                    inse.insertarColor(y,x,texto);
+                    cout << y << " , " << x << " " << texto << endl;
+                }
+                y++;
+            }
+            ss.clear();
+        }
+        inse.graficar(prioridad);
 }
 
 void NodoArbol::graficarMatriz(){

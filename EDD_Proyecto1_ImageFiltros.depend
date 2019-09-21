@@ -1,11 +1,12 @@
 # depslib dependency file v1.0
-1568958317 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\main.cpp
+1569096132 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\main.cpp
 	<iostream>
 	<string>
 	<fstream>
 	<sstream>
 	"MatrizCapa.h"
 	"ArbolImagen.h"
+	"NodoArbol.h"
 
 1568245279 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodomatriz.cpp
 	"NodoMatriz.h"
@@ -14,14 +15,14 @@
 1568245302 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodomatriz.h
 	<string>
 
-1568948151 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\matrizcapa.cpp
+1569076898 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\matrizcapa.cpp
 	"MatrizCapa.h"
 	"NodoMatriz.h"
 	<iostream>
 	<fstream>
 	<sstream>
 
-1568245485 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\matrizcapa.h
+1569075771 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\matrizcapa.h
 	"NodoMatriz.h"
 
 1566957010 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodocolumna.cpp
@@ -42,7 +43,7 @@
 1568046813 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\listafiltro.h
 	<string>
 
-1568946407 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodoarbol.cpp
+1569078074 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodoarbol.cpp
 	"NodoArbol.h"
 	"ListaFiltro.h"
 	"MatrizCapa.h"
@@ -50,15 +51,16 @@
 	<sstream>
 	<iostream>
 
-1568128815 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodoarbol.h
+1569075754 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodoarbol.h
 	"MatrizCapa.h"
 	"ListaFiltro.h"
 
-1568957953 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\arbolimagen.cpp
+1569013835 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\arbolimagen.cpp
 	"ArbolImagen.h"
 	"NodoArbol.h"
 	<iostream>
+	<sstream>
 
-1568163948 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\arbolimagen.h
+1569013417 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\arbolimagen.h
 	"NodoArbol.h"
 

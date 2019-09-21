@@ -5,6 +5,7 @@
 
 #include "MatrizCapa.h"
 #include "ArbolImagen.h"
+#include "NodoArbol.h"
 
 using namespace std;
 
@@ -12,41 +13,64 @@ using namespace std;
 ArbolImagen inserImg;
 
 void leerImagenes(){
-
-    ifstream archivos;
     string archi;
     cout << "Ingrese el nombre de la imagen: " <<endl;
     cin >> archi;
+    inserImg.insertarImagen(archi);
+}
+
+void seleccionarImagen(){
+    NodoArbol creCapa;
+    int opcion;
+    inserImg.recorrerInorden();
+    cin >> opcion;
+
+    ifstream archivos;
+    string archi;
+    archi = inserImg.buscarImagen(opcion);
     string direc = ".\\CargaMasiva\\"+archi+"\\inicial.csv";
     archivos.open(direc,ios::in);
     cout << direc <<endl;
-    inserImg.insertarImagen(archi);
-    /*
+
+    string texto;
+    int x=-1, y=-1;
     while(getline(archivos, texto)){
         stringstream ss(texto);
         x++;
         y=0;
+        string priori, capa;
         while(getline(ss, texto, ',')){
-            if(y>0 && texto != "File")
-            inserImg.insertarImagen(texto);
-            cout << y << " , " << x << " " << texto << endl;
+            switch(y){
+            case 0:
+                if(texto != "Layer"){
+                    //cout << texto << endl;
+                    //cout << y << " , " << x << "---" << texto << endl;
+                    priori = texto;
+                }
+                break;
+            case 1:
+                if(texto != "File"){
+                    //cout << y << " , " << x << "---" << texto << endl;
+                    capa = texto;
+                }
+                break;
+            }
+            if((priori.size() != 0 && capa.size() != 0)){
+                cout << capa << " " << priori << endl;
+                creCapa.crearCapa(archi, capa, priori);
+            }
             y++;
         }
         ss.clear();
     }
-    */
-}
-
-void seleccionarImagen(){
-    inserImg.recorrerInorden();
 }
 
 
 int main()
 {
     int opcion;
-    while(opcion != 8){
 
+    do{
         cout << "---------------- MENU ------------------- " << endl;
         cout << "1. Insert image " << endl;
         cout << "2. Select image " << endl;
@@ -64,16 +88,22 @@ int main()
             leerImagenes();
             break;
         case 2:
+            system("cls");
+            cout << "---------------- IMAGES ------------------- " << endl;
             seleccionarImagen();
             break;
         case 7:
             leerImagenes();
             break;
+        case 8:
+            system("exit");
+            break;
         default:
-            cout << "Algo salio mal " << endl;
-            opcion = 8;
+            system("cls");
             break;
         }
-    }
+        //system("cls");
+
+    }while(opcion != 8);
     return 0;
 }
