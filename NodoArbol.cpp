@@ -33,30 +33,33 @@ void NodoArbol::crearCapa(string archi, string capa, string prioridad){
         llenarCapa(archi, nueva, prioridad);
     }
 }
-
+MatrizCapa lienzo;
 void NodoArbol::llenarCapa(string archi, MatrizCapa *capa, string prioridad){
-        MatrizCapa inse;
-        ifstream archivos;
-        string texto;
-        int x=-1, y=-1;
+    MatrizCapa inse;
+    ifstream archivos;
+    string texto;
+    int x=-1, y=-1;
 
-        string direc = ".\\CargaMasiva\\"+archi+"\\"+capa->nomcapa;
-        archivos.open(direc,ios::in);
-        cout << direc << endl;
-        while(getline(archivos, texto)){
-            stringstream ss(texto);
-            x++;
-            y=0;
-            while(getline(ss, texto, ',')){
-                if(texto != "x"){
-                    inse.insertarColor(y,x,texto);
-                    cout << y << " , " << x << " " << texto << endl;
-                }
-                y++;
+    string direc = ".\\CargaMasiva\\"+archi+"\\"+capa->nomcapa;
+    archivos.open(direc,ios::in);
+    cout << direc << endl;
+    while(getline(archivos, texto)){
+        stringstream ss(texto);
+        x++;
+        y=0;
+        while(getline(ss, texto, ',')){
+            if(texto != "x"){
+                inse.insertarColor(y,x,texto);
+                //cout << y << " , " << x << " " << texto << endl;
             }
-            ss.clear();
+            y++;
         }
-        inse.graficar(prioridad);
+        ss.clear();
+    }
+    inse.graficar(prioridad);
+    if(prioridad != "0"){
+        lienzo.crearLienzo(direc);
+    }
 }
 
 void NodoArbol::graficarMatriz(){

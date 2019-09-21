@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1569096132 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\main.cpp
+1569097334 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\main.cpp
 	<iostream>
 	<string>
 	<fstream>
@@ -15,14 +15,14 @@
 1568245302 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodomatriz.h
 	<string>
 
-1569076898 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\matrizcapa.cpp
+1569100744 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\matrizcapa.cpp
 	"MatrizCapa.h"
 	"NodoMatriz.h"
 	<iostream>
 	<fstream>
 	<sstream>
 
-1569075771 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\matrizcapa.h
+1569100605 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\matrizcapa.h
 	"NodoMatriz.h"
 
 1566957010 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodocolumna.cpp

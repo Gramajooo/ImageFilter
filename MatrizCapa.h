@@ -32,6 +32,8 @@ class MatrizCapa
 
         void graficar(string prioridad);
 
+        void crearLienzo(string lienzo);
+
     protected:
 
     private:

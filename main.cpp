@@ -56,7 +56,7 @@ void seleccionarImagen(){
                 break;
             }
             if((priori.size() != 0 && capa.size() != 0)){
-                cout << capa << " " << priori << endl;
+                //cout << capa << " " << priori << endl;
                 creCapa.crearCapa(archi, capa, priori);
             }
             y++;

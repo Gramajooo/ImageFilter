@@ -237,9 +237,7 @@ void MatrizCapa::graficar(string priori){
     file.open("graf.dot");
     file << grafica;
     file.close();
-    cout << priori << endl;
     string sys = "dot graf.dot -o Capas\\capa"+priori+".jpg -Tjpg -Gcharset=utf8";
-    cout << priori << endl;
     cout << sys << endl;
     const char *s = sys.c_str();
     system(s);
@@ -250,7 +248,26 @@ void MatrizCapa::graficar(string priori){
 
 }
 
-
+void MatrizCapa::crearLienzo(string lienzo){
+    ifstream archivos;
+    string texto;
+    int x=-1, y=-1;
+    archivos.open(lienzo,ios::in);
+    while(getline(archivos, texto)){
+        stringstream ss(texto);
+        x++;
+        y=0;
+        while(getline(ss, texto, ',')){
+            if(texto != "x"){
+                insertarColor(y,x,texto);
+                //cout << y << " , " << x << " " << texto << endl;
+            }
+            y++;
+        }
+        ss.clear();
+    }
+    graficar("Lienzo");
+}
 MatrizCapa::~MatrizCapa()
 {
     //dtor
