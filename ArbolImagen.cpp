@@ -2,6 +2,7 @@
 #include "NodoArbol.h"
 #include <iostream>
 #include <sstream>
+#include <fstream>
 ArbolImagen::ArbolImagen()
 {
     //ctor
@@ -33,6 +34,52 @@ string ArbolImagen::buscar(NodoArbol *raiz){
 
 void ArbolImagen::insertarImagen(string nickname){
     this->raiz = insertar(this->raiz, nickname);
+}
+void ArbolImagen::graficarABB(){
+    string dot = "digraph g { style=\"radial\" bgcolor=\"white:darkgreen\";\n";
+    dot = dot + "node [style = radial, shape = record,color=cornflowerblue];\n";
+
+    string algo = graficar(this->raiz);
+
+    dot += algo + "}";
+
+    ofstream file;
+    file.open("graf.dot");
+    file << dot;
+    file.close();
+    cout << "\n<<<<Archivo creado>>>>\n";
+    string ope = "dot graf.dot -o Reports\\abb.jpg -Tjpg -Gcharset=utf8";
+    const char* cs = ope.c_str();
+    system(cs);
+
+}
+string ArbolImagen::graficar(NodoArbol *raiz) {
+    string dot;
+    string lbl1 = "[label = \"<f0> |<f1> ";
+    string lbl2 = "|<f2> \",style = radial, shape = record,color=cornflowerblue];\n";
+    if (raiz != 0) {
+        stringstream r;
+        r << raiz;
+        string rot = "ABB" + r.str();
+        r.str("");
+        string name = raiz->nickname;
+        string lbl = lbl1 + name + lbl2;
+        dot = dot + rot + lbl;
+        if (raiz->izq != 0) {
+            dot = dot + graficar(raiz->izq);
+            r << raiz->izq;
+            string rotizq = "ABB" + r.str();
+            dot = dot + "\"" + rot + "\":f0->\"" + rotizq + "\":f1 [color=\"white\"];\n";
+        }
+        r.str("");
+        if (raiz->dere != 0) {
+            dot = dot + graficar(raiz->dere);
+            r << raiz->dere;
+            string rotder = "ABB" + r.str();
+            dot = dot + "\"" + rot + "\":f2->\"" + rotder + "\":f1 [color=\"white\"];\n";
+        }
+    }
+    return dot;
 }
 
 NodoArbol *ArbolImagen::insertar(NodoArbol *raiz, string nickname){

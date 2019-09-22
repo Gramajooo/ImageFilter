@@ -17,6 +17,8 @@ class ArbolImagen
 
         string buscarImagen(int ids);
         string buscar(NodoArbol *raiz);
+        void graficarABB();
+        string graficar(NodoArbol *raiz);
 
 
         void recorrerInorden();

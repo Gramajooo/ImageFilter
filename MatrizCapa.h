@@ -31,8 +31,11 @@ class MatrizCapa
         void insertarColor(int x, int y, string color);
 
         void graficar(string prioridad);
+        void graficarDouble();
 
         void crearLienzo(string lienzo);
+
+        void pintarHTML(string confi, string archi);
 
     protected:
 

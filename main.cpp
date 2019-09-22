@@ -28,6 +28,7 @@ void seleccionarImagen(){
     ifstream archivos;
     string archi;
     archi = inserImg.buscarImagen(opcion);
+    cout << archi <<endl;
     string direc = ".\\CargaMasiva\\"+archi+"\\inicial.csv";
     archivos.open(direc,ios::in);
     cout << direc <<endl;
@@ -43,28 +44,57 @@ void seleccionarImagen(){
             switch(y){
             case 0:
                 if(texto != "Layer"){
-                    //cout << texto << endl;
-                    //cout << y << " , " << x << "---" << texto << endl;
                     priori = texto;
                 }
                 break;
             case 1:
                 if(texto != "File"){
-                    //cout << y << " , " << x << "---" << texto << endl;
                     capa = texto;
                 }
                 break;
             }
             if((priori.size() != 0 && capa.size() != 0)){
-                //cout << capa << " " << priori << endl;
                 creCapa.crearCapa(archi, capa, priori);
             }
             y++;
         }
         ss.clear();
     }
+    //system("cls");
 }
 
+void reports(){
+    int opcion;
+    do{
+        cout << "---------------- REPORTS ------------------- " << endl;
+        cout << "1. Imported Images (ABB) " << endl;
+        cout << "2. Image Layer (CAPAS Y LIENZO)" << endl;
+        cout << "3. Linear Matrix (MATRIZ LINEAL)" << endl;
+        cout << "4. Traversal (RECORRIDOS)" << endl;
+        cout << "5. Filters (FILTROS)" << endl;
+        cout << "6. Exit" << endl;
+
+        cin >> opcion;
+
+        switch(opcion){
+        case 1:{
+            //string sys = "\\cd Reports\\abb.jpg";
+            //const char *s = sys.c_str();
+            //system(s);}
+            inserImg.graficarABB();
+            }
+            break;
+        case 6:
+            opcion = 8;
+            break;
+        default:
+            //system("cls");
+            break;
+        }
+
+    }while(opcion != 8);
+
+}
 
 int main()
 {
@@ -78,8 +108,7 @@ int main()
         cout << "4. Manual editing " << endl;
         cout << "5. Export image " << endl;
         cout << "6. Reports " << endl;
-        cout << "7. Pruebas " << endl;
-        cout << "8. Exit " << endl;
+        cout << "7. Exit " << endl;
 
         cin >> opcion;
 
@@ -91,12 +120,14 @@ int main()
             system("cls");
             cout << "---------------- IMAGES ------------------- " << endl;
             seleccionarImagen();
+            //system("cls");
+            break;
+        case 6:
+            system("cls");
+            reports();
             break;
         case 7:
-            leerImagenes();
-            break;
-        case 8:
-            system("exit");
+            opcion = 7;
             break;
         default:
             system("cls");
@@ -104,6 +135,7 @@ int main()
         }
         //system("cls");
 
-    }while(opcion != 8);
+    }while(opcion != 7);
+
     return 0;
 }

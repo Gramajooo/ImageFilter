@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1569097334 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\main.cpp
+1569128710 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\main.cpp
 	<iostream>
 	<string>
 	<fstream>
@@ -15,14 +15,15 @@
 1568245302 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodomatriz.h
 	<string>
 
-1569100744 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\matrizcapa.cpp
+1569122570 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\matrizcapa.cpp
 	"MatrizCapa.h"
 	"NodoMatriz.h"
 	<iostream>
 	<fstream>
 	<sstream>
+	<cstdlib>
 
-1569100605 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\matrizcapa.h
+1569122203 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\matrizcapa.h
 	"NodoMatriz.h"
 
 1566957010 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodocolumna.cpp
@@ -43,7 +44,7 @@
 1568046813 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\listafiltro.h
 	<string>
 
-1569078074 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodoarbol.cpp
+1569127981 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodoarbol.cpp
 	"NodoArbol.h"
 	"ListaFiltro.h"
 	"MatrizCapa.h"
@@ -51,16 +52,17 @@
 	<sstream>
 	<iostream>
 
-1569075754 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodoarbol.h
+1569120090 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\nodoarbol.h
 	"MatrizCapa.h"
 	"ListaFiltro.h"
 
-1569013835 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\arbolimagen.cpp
+1569130624 source:c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\arbolimagen.cpp
 	"ArbolImagen.h"
 	"NodoArbol.h"
 	<iostream>
 	<sstream>
+	<fstream>
 
-1569013417 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\arbolimagen.h
+1569127981 c:\users\jime\documents\code blocks projects\edd_proyecto1_imagefiltros\arbolimagen.h
 	"NodoArbol.h"
 

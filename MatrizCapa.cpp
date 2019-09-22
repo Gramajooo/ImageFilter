@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <cstdlib>
 
 MatrizCapa::MatrizCapa(string prioridad, string nomcapa)
 {
@@ -238,15 +239,95 @@ void MatrizCapa::graficar(string priori){
     file << grafica;
     file.close();
     string sys = "dot graf.dot -o Capas\\capa"+priori+".jpg -Tjpg -Gcharset=utf8";
-    cout << sys << endl;
+    cout << priori << endl;
     const char *s = sys.c_str();
     system(s);
     //system("\\c start imagen.jpg");
 
-
-    cout << "\n Listo :)" << endl;
+    //cout << "\n Listo :)" << endl;
 
 }
+
+void MatrizCapa::graficarDouble(){
+    NodoMatriz *rrFil = this->root;
+    NodoMatriz *rrCol = this->root;
+
+    string grafica = "digraph g { \n";
+    grafica += "node[shape=box, color=cornflowerblue];";
+    while(rrFil != NULL){
+        grafica += "\n subgraph {";
+        while(rrCol != NULL){
+            stringstream rr3;
+            stringstream rr4;
+            rr3 << rrCol->x;
+            rr4 << rrFil->y;
+            string s3 = rr3.str();
+            string s4 = rr4.str();
+            grafica += "\"" + s3 + "," + s4 + " " + rrCol->color + "\" \n";
+            rrCol = rrCol->sig;
+            if(rrCol != NULL){
+                stringstream rr3;
+                stringstream rr4;
+                rr3 << rrCol->x;
+                rr4 << rrCol->y;
+                string s3 = rr3.str();
+                string s4 = rr4.str();
+                grafica += "-> \"" + s3+ "," + s4 + " " + rrCol->color + "\" [dir=\"both\"] \n";
+            }
+        }
+        rrFil = rrFil->abajo;
+        if(rrCol == NULL){
+            rrCol = rrFil;
+        }
+         grafica += "}";
+    }
+    rrFil = this->root;
+    rrCol = this->root;
+
+    while(rrCol != NULL){
+        grafica += "\n rank=same{";
+        while(rrFil != NULL){
+            stringstream rr3;
+            stringstream rr4;
+            rr3 << rrFil->x;
+            rr4 << rrFil->y;
+            string s3 = rr3.str();
+            string s4 = rr4.str();
+            grafica += "\"" + s3 + "," + s4 + " " + rrFil->color + "\" \n";
+            rrFil = rrFil->abajo;
+            if(rrFil != NULL){
+                stringstream rr3;
+                stringstream rr4;
+                rr3 << rrFil->x;
+                rr4 << rrFil->y;
+                string s3 = rr3.str();
+                string s4 = rr4.str();
+                grafica += "-> \"" + s3+ "," + s4 + " " + rrFil->color + "\" [dir=\"both\"] \n";
+            }
+        }
+        rrCol = rrCol->sig;
+        if(rrFil == NULL){
+            rrFil = rrCol;
+        }
+          grafica += "}";
+    }
+
+
+    grafica += "}";
+
+    ofstream file;
+    file.open("graf.dot");
+    file << grafica;
+    file.close();
+    string sys = "dot graf.dot -o Filtros\\Double.jpg -Tjpg -Gcharset=utf8";
+    const char *s = sys.c_str();
+    system(s);
+    //system("\\c start imagen.jpg");
+
+    //cout << "\n Listo :)" << endl;
+
+}
+
 
 void MatrizCapa::crearLienzo(string lienzo){
     ifstream archivos;
@@ -258,7 +339,7 @@ void MatrizCapa::crearLienzo(string lienzo){
         x++;
         y=0;
         while(getline(ss, texto, ',')){
-            if(texto != "x"){
+            if(texto != "X" && texto != "x" ){
                 insertarColor(y,x,texto);
                 //cout << y << " , " << x << " " << texto << endl;
             }
@@ -268,6 +349,89 @@ void MatrizCapa::crearLienzo(string lienzo){
     }
     graficar("Lienzo");
 }
+
+void MatrizCapa::pintarHTML(string confi, string archi){
+
+    ifstream archivos;
+    string texto;
+    string imgw, imgh, pixw, pixh;
+    int x=-1, y=-1;
+    archivos.open(confi,ios::in);
+    while(getline(archivos, texto)){
+        stringstream ss(texto);
+        x++;
+        y=0;
+        while(getline(ss, texto, ',')){
+            switch(y){
+            case 1:
+                if(texto != "Value" && texto != "value"){
+                    switch(x){
+                    case 1:
+                        imgw = texto;
+                        break;
+                    case 2:
+                        imgh = texto;
+                        break;
+                    case 3:
+                        pixw = texto;
+                        break;
+                    case 4:
+                        pixh = texto;
+                        break;
+                    }
+                }
+                break;
+            }
+            y++;
+        }
+        ss.clear();
+    }
+
+    int tot = atoi(imgw.c_str())*atoi(imgh.c_str());
+    int sumpix = 0;
+
+    string grafica = "<!DOCTYPE html><html>\n<head><!-- Link to our stylesheet Painting our Pixel Art --> \n";
+    grafica += "<link rel=\"stylesheet\" href=\""+archi+".css\">\n</head>\n<body>\n<!-- div container representing the canvas -->\n";
+    grafica += "<div class=\"canvas\">\n";
+    //cout << tot << endl;
+    while(sumpix != tot){
+        grafica += "<div class=\"pixel\"></div>\n";
+        sumpix++;
+    }
+/*
+    string estilo="body {\n background: #333333;\n height: 100vh;\n display: flex;\n justify-content: center;\n ";
+    estilo +="align-items: center;\n} \n .canvas {\n width: 480px;\n height: 480px;\n}\n";
+    estilo +=".pixel {\n width: "+pixw+"px;\n height: "+pixh+"px;\n float: left;\n }\n";
+
+    NodoMatriz *rrFil = this->root;
+    NodoMatriz *rrCol = this->root;
+
+    while(rrCol != NULL){
+        while(rrFil != NULL){
+            stringstream rr3;
+            stringstream rr4;
+            rr3 << rrFil->x;
+            rr4 << rrFil->y;
+            string s3 = rr3.str();
+            string s4 = rr4.str();
+            grafica += " .pixel:nth-child(5), \n " + s3 + "," + s4 + " " + rrFil->color + "\" \n";
+            rrFil = rrFil->abajo;
+        }
+    }
+*/
+    grafica += "</div>\n</body>\n</html>";
+
+    ofstream file;
+    file.open("Export\\"+archi+".html");
+    file << grafica;
+    file.close();
+
+    //system("\\c start imagen.jpg");
+
+    //cout << "\n Listo :)" << endl;
+
+}
+
 MatrizCapa::~MatrizCapa()
 {
     //dtor

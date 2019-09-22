@@ -19,13 +19,12 @@ class NodoArbol
         //Lista de capas
         void crearCapa(string archi, string capa, string prioridad);
         void llenarCapa(string archi, MatrizCapa *capa, string prioridad);
-        void graficarMatriz();
 
         //NODO FILTROS
         ListaFiltro *iniFil;
 
         //Lista de filtros
-        void crearFiltro();
+        void menuFiltros();
 
         //METODOS NODO ARBOL
         void crearLienzo();

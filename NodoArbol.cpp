@@ -42,13 +42,14 @@ void NodoArbol::llenarCapa(string archi, MatrizCapa *capa, string prioridad){
 
     string direc = ".\\CargaMasiva\\"+archi+"\\"+capa->nomcapa;
     archivos.open(direc,ios::in);
+    //
     cout << direc << endl;
     while(getline(archivos, texto)){
         stringstream ss(texto);
         x++;
         y=0;
         while(getline(ss, texto, ',')){
-            if(texto != "x"){
+            if(texto != "X" && texto != "x" ){
                 inse.insertarColor(y,x,texto);
                 //cout << y << " , " << x << " " << texto << endl;
             }
@@ -59,13 +60,51 @@ void NodoArbol::llenarCapa(string archi, MatrizCapa *capa, string prioridad){
     inse.graficar(prioridad);
     if(prioridad != "0"){
         lienzo.crearLienzo(direc);
+        //cout << "holis" << endl;
+        string ruta= ".\\CargaMasiva\\"+archi+"\\config.csv";
+        lienzo.pintarHTML(ruta, archi);
     }
+    //system("cls");
+    //menuFiltros();
+
 }
 
-void NodoArbol::graficarMatriz(){
+void NodoArbol::menuFiltros(){
+    int opcion;
+    do{
+        cout << "---------------- APPLY FILTER ------------------- " << endl;
+        cout << "1. Select Filter " << endl;
+        cout << "2. Export Image " << endl;
+        cin >> opcion;
 
+        switch(opcion){
+        case 1:
+            int op;
+            cout << "---------------- FILTERS ------------------- " << endl;
+            cout << "1. Negative " << endl;
+            cout << "2. Grayscale " << endl;
+            cout << "3. X-Mirror " << endl;
+            cout << "4. Y-Mirror " << endl;
+            cout << "5. Double-Mirror " << endl;
+            cout << "6. Collage " << endl;
+            cout << "7. Mosaic " << endl;
+            cin >> op;
+
+            switch(op){
+                case 5:
+                    lienzo.graficarDouble();
+                    break;
+                default:
+                    cout << "No puedo" << endl;
+                    break;
+            }
+            break;
+        default:
+
+            break;
+        }
+    }while(opcion != 8);
 }
-
 
 
 NodoArbol::~NodoArbol()
